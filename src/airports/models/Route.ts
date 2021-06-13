@@ -1,4 +1,4 @@
-export interface RouteDTO {
+export interface Route {
     airline: string;
     airline_id: string;
     source_airport: string;

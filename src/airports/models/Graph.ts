@@ -1,6 +1,6 @@
 import {Location} from "./Location";
-import {AirportDTO} from "./AirportDTO";
-import {RouteDTO} from "./RouteDTO";
+import {Airport} from "./Airport";
+import {Route} from "./Route";
 import {Dictionary} from "./Dictionary";
 import {Airports} from "./Airports";
 
@@ -63,7 +63,7 @@ class Graph {
             if (error) {
                 throw error;
             }
-            results.rows.map((row: AirportDTO) => {
+            results.rows.map((row: Airport) => {
                 this.addVertex(new Location(row.latitude, row.longitude), row.iata);
             });
         });
@@ -74,7 +74,7 @@ class Graph {
             if (error) {
                 throw error;
             }
-            results.rows.map((row: RouteDTO) => {
+            results.rows.map((row: Route) => {
                 // TODO change db values with snake case to camel case for persistency
                 const sourceAirport = this.verticesLocation[row.source_airport];
                 const destinationAirport = this.verticesLocation[row.destination_airport];
@@ -150,7 +150,7 @@ class Graph {
         let vertex = destination;
         while (parents[vertex] !== source) {
             vertex = parents[vertex];
-            path += ' <= ' + vertex;
+            path += ' <= ' + parents[vertex];
         }
         path += ' <= ' + source;
 
