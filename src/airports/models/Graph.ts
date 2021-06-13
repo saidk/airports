@@ -150,7 +150,7 @@ class Graph {
         let vertex = destination;
         while (parents[vertex] !== source) {
             vertex = parents[vertex];
-            path += ' <= ' + parents[vertex];
+            path += ' <= ' + vertex;
         }
         path += ' <= ' + source;
 
