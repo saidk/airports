@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:11-alpine
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_DB: sixfold
+      POSTGRES_USER: sixfold
+      POSTGRES_PASSWORD: sixfold
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sixfold"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
